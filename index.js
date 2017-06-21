@@ -20,3 +20,9 @@ export function runCombine(combinations, combine) {
 		});
 	};
 };
+
+export function getInitialState(combinations, initialState) {
+	each(combinations, function(combination, name) {
+		initialState[name] = combination.module();
+	});
+};
