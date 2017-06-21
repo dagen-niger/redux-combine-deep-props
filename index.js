@@ -1,4 +1,4 @@
-import {each, contains} from "lodash";
+import {each} from "lodash";
 
 export function stateCombine(combinations) {
 	return function(prop, state, action) {
@@ -14,7 +14,7 @@ export function stateCombine(combinations) {
 export function runCombine(combinations, combine) {
 	return function(state, action) {
 		each(combinations, function(combination, name) {
-			if (contains(combination.actions, action.type)) {
+			if (combination.actions.includes(action.type)) {
 				state = combine(name, state, action);
 			};
 		});
