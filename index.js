@@ -11,7 +11,7 @@ export default function stateCombine(combinations) {
 	};
 };
 
-export default function runCombine(combinations, combine) {
+export function runCombine(combinations, combine) {
 	return function(state, action) {
 		each(combinations, function(combination, name) {
 			if (contains(combination.actions, action.type)) {
