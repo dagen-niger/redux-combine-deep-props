@@ -1,0 +1,22 @@
+{
+  "name": "redux-combine-deep-props",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+http://"
+  },
+  "author": "Kolesov Anatoly",
+  "license": "MIT",
+  "bugs": {
+    "url": "http://"
+  },
+  "homepage": "http://",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
