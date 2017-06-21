@@ -1,0 +1,15 @@
+{
+  "name": "redux-combine-deep-props",
+  "version": "1.0.0",
+  "authors": [
+    "Anatoly Kolesov <kolesoffac@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://git.ids360.ru:65080/redux/redux-combine-deep-props.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
