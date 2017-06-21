@@ -1,6 +1,6 @@
 import {each, contains} from "lodash";
 
-export default function stateCombine(combinations) {
+export function stateCombine(combinations) {
 	return function(prop, state, action) {
 		let combination = combinations[prop];
 		let module = combination.module;
