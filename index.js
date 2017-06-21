@@ -22,7 +22,11 @@ export function runCombine(combinations, combine) {
 };
 
 export function getInitialState(combinations, initialState) {
+	let initialState$ = initialState;
+
 	each(combinations, function(combination, name) {
-		initialState[name] = combination.module();
+		initialState$[name] = combination.module();
 	});
+
+	return initialState$;
 };
