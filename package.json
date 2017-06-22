@@ -1,20 +1,20 @@
 {
   "name": "redux-combine-deep-props",
   "version": "0.0.1",
-  "description": "",
+  "description": "Combine deeply properties for reducer of Redux",
   "main": "index.js",
   "scripts": {
   },
   "repository": {
     "type": "git",
-    "url": "git+http://"
+    "url": "git+https://github.com/kolesoffac/redux-combine-deep-props.git"
   },
   "author": "Kolesov Anatoly",
   "license": "MIT",
   "bugs": {
-    "url": "http://"
+    "url": "https://github.com/kolesoffac/redux-combine-deep-props/issues"
   },
-  "homepage": "http://",
+  "homepage": "https://github.com/kolesoffac/redux-combine-deep-props.git",
   "devDependencies": {
   },
   "dependencies": {
