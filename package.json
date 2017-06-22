@@ -1,6 +1,6 @@
 {
   "name": "redux-combine-deep-props",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Combine deeply properties for reducer of Redux",
   "main": "index.js",
   "scripts": {
