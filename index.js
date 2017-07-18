@@ -1,4 +1,4 @@
-import {each} from "lodash";
+import {each} from "lodash-es";
 
 export function stateCombine(combinations) {
 	return function(prop, state, action) {
