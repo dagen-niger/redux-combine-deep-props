@@ -2,17 +2,25 @@ import each from "lodash-es/each";
 
 export function stateCombine(combinations) {
 	return function(prop, state, action) {
-		let combination = combinations[prop];
-		let module = combination.module;
+		const combination = combinations[prop];
+		const { module } = combination;
 
-		state[prop] = module(state[prop], action);
+		const prevProp = state[prop]
+		const nextProp = module(state[prop], action)
+		const hasChanged = prevProp !== nextProp
+		const nextState = hasChanged ? {
+			...state,
+			[prop]: nextProp,
+		} : state;
 
-		return state;
+		return nextState;
 	};
 };
 
 export function runCombine(combinations, combine) {
 	return function(state, action) {
+		// TODO: the same problem.
+		// We should not mutate state from scope rathen then return from function.
 		each(combinations, function(combination, name) {
 			if (combination.actions.includes(action.type)) {
 				state = combine(name, state, action);
@@ -22,11 +30,8 @@ export function runCombine(combinations, combine) {
 };
 
 export function getInitialState(combinations, initialState) {
-	let initialState$ = initialState;
+	const combineInitial = (memo, [combination, name]) =>
+		Object.assign(memo, { [name]: combination.module() });
 
-	each(combinations, function(combination, name) {
-		initialState$[name] = combination.module();
-	});
-
-	return initialState$;
+	return Object.entries(combinations).reduce(combineInitial, initialState)
 };
