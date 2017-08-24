@@ -18,6 +18,5 @@
   "devDependencies": {
   },
   "dependencies": {
-    "lodash-es": "^4.0.0"
   }
 }
