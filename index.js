@@ -1,6 +1,9 @@
 function checkChange(nextProp, prevProp, fnNext, fnPrev) {
 	const hasChanged = prevProp !== nextProp
-	const nextState = hasChanged ? fnNext && fnNext(nextProp) || nextProp : fnPrev && fnPrev(prevProp) || prevProp;
+	const nextProp$ = fnNext && fnNext(nextProp) || nextProp;
+	const prevProp$ = fnPrev && fnPrev(prevProp) || prevProp;
+	
+	const nextState = hasChanged ? nextProp$ : prevProp$;
 
 	return nextState;
 };
@@ -15,9 +18,7 @@ export function getInitialState(combinations, initialState) {
 	let initialState$ = initialState;
 	let combinations$ = getCombinations(combinations);
 
-	Object.keys(combinations$).forEach(function(name) {
-		initialState$[name] = combinations$[name].module();
-	})
+	Object.keys(combinations$).forEach((name) => initialState$[name] = combinations$[name].module() );
 
 	return initialState$;
 };
@@ -26,15 +27,12 @@ export function getInitialState(combinations, initialState) {
 export function stateCombine(combinations) {
 	return function(prop, state, action) {
 		const { module } = getCombinations(combinations)[prop] || {};
+		const nextProp$ = module(state[prop], action);
+		const prevProp$ = state[prop];
+		const fnNext = (nextProp) => { ...state, [prop]: nextProp };
+		const fnPrev = (prevProp) => state;
 
-		return module ? checkChange(module(state[prop], action), state[prop], function(nextProp) {
-			return {
-				...state,
-				[prop]: nextProp,
-			}
-		}, function(prevProp) {
-			return state;
-		}) : state;
+		return module ? checkChange(nextProp$, prevProp$, fnNext, fnPrev) : state;
 	};
 };
 
@@ -43,9 +41,7 @@ export function runCombine(combinations, combine) {
 	return function(state, action) {
 		let prevProp = state;
 
-		Object.keys(getCombinations(combinations)).forEach(function(name) {
-			state = combine(name, state, action);
-		});
+		Object.keys(getCombinations(combinations)).forEach((name) => state = combine(name, state, action) );
 
 		return checkChange(state, prevProp);
 	};
