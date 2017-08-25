@@ -29,7 +29,7 @@ export function stateCombine(combinations) {
 		const { module } = getCombinations(combinations)[prop] || {};
 		const nextProp$ = module(state[prop], action);
 		const prevProp$ = state[prop];
-		const fnNext = (nextProp) => { ...state, [prop]: nextProp };
+		const fnNext = (nextProp) => ({ ...state, [prop]: nextProp });
 		const fnPrev = (prevProp) => state;
 
 		return module ? checkChange(nextProp$, prevProp$, fnNext, fnPrev) : state;
