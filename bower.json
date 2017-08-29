@@ -4,6 +4,7 @@
   "authors": [
     "Anatoly Kolesov <kolesoffac@gmail.com>"
   ],
+  "main": "build/redux-combine-deep-props.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/kolesoffac/redux-combine-deep-props.git"
